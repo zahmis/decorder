@@ -15,15 +15,11 @@ func main() {
 		return
 	}
 
-	// UUIDを16バイトのバイナリ表現に変換
-	uuidObj, err := uuid.Parse(originalUUID.String())
-	if err != nil {
-		fmt.Println("バイナリ変換に失敗", err)
-		return
-	}
+	// UUIDを16バイトのバイナリ表現として取得
+	uuidBytes := originalUUID[:]
 
 	// Base64エンコード
-	encoded := base64.RawURLEncoding.EncodeToString(uuidObj[:])
+	encoded := base64.RawURLEncoding.EncodeToString(uuidBytes)
 
 	// Base64デコード
 	decoded, err := base64.RawURLEncoding.DecodeString(encoded)
